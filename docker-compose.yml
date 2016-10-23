@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+
+  cassandra:
+    image: cassandra
+
+  clustershardedapp:
+    image: clustershardedapp:1.0
+    links:
+      - "cassandra"
+    depends_on:
+      - cassandra
