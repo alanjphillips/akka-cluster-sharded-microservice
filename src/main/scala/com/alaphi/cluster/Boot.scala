@@ -1,8 +1,8 @@
 package com.alaphi.cluster
 
-import com.typesafe.config.ConfigFactory
 import akka.actor.ActorSystem
 import akka.cluster.sharding.{ClusterSharding, ClusterShardingSettings}
+import com.typesafe.config.ConfigFactory
 
 
 object Boot extends App {
@@ -25,10 +25,6 @@ object Boot extends App {
 
   val workerRegion = ClusterSharding(system1).shardRegion(WorkerActor.shardName)
 
-  Thread.sleep(20000)
-  workerRegion ! Command("DoSomethingOne")
-
-  Thread.sleep(10000)
-  workerRegion ! Command("DoSomethingTwo")
+  system1.actorOf(WorkDispatcherActor.props(workerRegion))
 
 }
