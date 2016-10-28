@@ -36,8 +36,9 @@ services:
       - kafka
 
 # akkahttpkafkaapp service can be use to publish to worker_commands Topic in Kafka by sending Http requests
-# https://github.com/alanphillips78/akka-http-kafka-streams
-# To use here, do a docker publish locally, uncomment the entry below and launch all using docker-compose
+# akkahttpkafkaapp service can be found here - https://github.com/alanphillips78/akka-http-kafka-streams
+# To use here and publish to Kafka using http, do a docker publish locally of akkahttpkafkaapp , uncomment the entry below and launch all using docker-compose
+# Then observe that clustershardedapp will consume these messages and persist these to cassandra
 
 #  akkahttpkafkaapp:
 #    image: akka-http-kafka-streams:1.0
